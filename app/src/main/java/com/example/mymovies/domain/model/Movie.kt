@@ -1,6 +1,7 @@
 package com.example.mymovies.domain.model
 
 import com.example.mymovies.data.db.entity.MovieEntity
+import com.example.mymovies.data.network.MovieRemote
 
 
 /**
@@ -15,22 +16,29 @@ data class Movie(
     val overview : String
 )
 
-fun List<MovieEntity>.toDomain() : List<Movie>{
-    val mutableListOfMovies : MutableList<Movie> = mutableListOf()
-
-    this.forEach {
-        movieEntity ->
-
-        val movie = Movie(
-            id = movieEntity.id,
-            imageBackGround = movieEntity.backGround,
-            imagePoster = movieEntity.poster,
-            title = movieEntity.title,
-            avgVote = movieEntity.avg,
-            overview = movieEntity.overview
+fun List<MovieEntity>.dbToDomain() : List<Movie>{
+    return this.map{
+        Movie(
+            it.id,
+            it.backGround,
+            it.poster,
+            it.title,
+            it.avg,
+            it.overview
         )
-        mutableListOfMovies +=movie
     }
-    return mutableListOfMovies
-
 }
+
+fun List<MovieRemote>.remoteToDomain() : List<Movie>{
+    return this.map{
+        Movie(
+            it.id,
+            it.imageBackGround,
+            it.imagePoster,
+            it.title,
+            it.vote_average,
+            it.overview
+        )
+    }
+}
+

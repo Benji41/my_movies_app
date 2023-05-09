@@ -4,8 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.mymovies.data.network.MovieRemote
-import com.example.mymovies.data.network.ResponseMoviesAPI
-import com.example.mymovies.util.MovieTypes
+import com.example.mymovies.util.TypeOfMovie
 import org.jetbrains.annotations.NotNull
 
 /**
@@ -33,20 +32,17 @@ data class MovieEntity(
     val isActual : Boolean
 )
 
-fun List<MovieRemote>.toEntity(type : MovieTypes) : List<MovieEntity> {
-    val mutableListOfMovieEntity : MutableList<MovieEntity> = mutableListOf()
-    this.forEach {
-        json ->
-        val movieEntity = MovieEntity(
-            id = json.id,
-            backGround = json.imageBackGround,
-            poster = json.imagePoster,
-            title = json.title,
-            avg = json.vote_average,
-            overview = json.overview,
-            isActual = type == MovieTypes.ACTUAL
+fun List<MovieRemote>.toEntity(type : TypeOfMovie) : List<MovieEntity> {
+    return this.map {
+        MovieEntity(
+            id = it.id,
+            backGround = it.imageBackGround,
+            poster = it.imagePoster,
+            title = it.title,
+            avg = it.vote_average,
+            overview = it.overview,
+            isActual = type == TypeOfMovie.ACTUAL
         )
-        mutableListOfMovieEntity+=movieEntity
     }
-    return mutableListOfMovieEntity
+
 }

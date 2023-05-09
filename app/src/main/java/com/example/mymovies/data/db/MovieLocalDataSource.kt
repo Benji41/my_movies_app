@@ -10,9 +10,14 @@ class MovieLocalDataSource {
             Room.databaseBuilder(MyApplication.appContext, MovieDatabase::class.java,"Movies Database")
                 .build()
         }
-
         suspend fun insertAllMovies(movies : List<MovieEntity>){
            room.movieDAO.insertAllTopRatedMovies(movies)
         }
+        suspend fun getAllTopRatedMovies() : List<MovieEntity> = room.movieDAO.getTopRatedMovies()
+        suspend fun getAllActualMovies() : List<MovieEntity> = room.movieDAO.getActualMovies()
+        suspend fun getMovieDetail(id : Int) : MovieEntity= room.movieDAO.getMovieDetail(id)
+
+
+
     }
 }
