@@ -17,6 +17,7 @@ class MovieCategoryAdapter(private val context: Context) : RecyclerView.Adapter<
     private var movieList = emptyList<List<Movie>>()
     private val categories = listOf("Peliculas Favoritas","Peliculas en cartelera")
 
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int

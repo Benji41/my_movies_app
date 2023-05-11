@@ -71,6 +71,7 @@ class MainMovieFragment : Fragment(),MenuProvider {
             object :  SearchView.OnQueryTextListener{
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     TODO("Not yet implemented")
+
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {

@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import com.example.mymovies.databinding.FragmentDetailMoviesFragmentBinding
 
 
-class DetailMovieFragment : Fragment() {
+class DetailMovieFragment(private val movieID : Int =-1) : Fragment() {
     private var _binding  : FragmentDetailMoviesFragmentBinding? = null
     private val binding get() = _binding!!
-    private val movieID : Int =-1
+
 
 
 

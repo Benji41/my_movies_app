@@ -1,10 +1,14 @@
 package com.example.mymovies.ui.adapters
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mymovies.R
 import com.example.mymovies.databinding.RecyclerviewMovieElementBinding
 import com.example.mymovies.domain.model.Movie
 import com.example.mymovies.util.getCompleteImageURL
