@@ -5,14 +5,18 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
 
-class MovieRemoteSource {
+class MovieRemoteDataSource {
+     val getPopularMovies : Requests = Requests.GetPopularMovies()
+     val getActualMovies : Requests = Requests.GetActualMovies()
 
-    sealed class Requests{
+
+     sealed class Requests{
+
         abstract val name : String
-        class GetPopularMovies (override val name: String = "Popular Movies") : Requests()
-        class GetActualMovies (override val name: String = "Actual Movies") : Requests()
+        internal class GetPopularMovies (override val name: String = "Popular Movies") : Requests()
+         internal class GetActualMovies (override val name: String = "Actual Movies") : Requests()
 
-        suspend fun getMovies() : List<MovieRemote> {
+       suspend fun getMovies() : List<MovieRemote> {
             return when(this){
                 is GetActualMovies -> getMoviesByAPI(API::getAllPlayingNowMovies)
                 is GetPopularMovies -> getMoviesByAPI(API::getAllTopRatedMovies)

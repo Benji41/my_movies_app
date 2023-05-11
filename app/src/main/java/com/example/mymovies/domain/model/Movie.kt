@@ -16,7 +16,7 @@ data class Movie(
     val overview : String
 )
 
-fun List<MovieEntity>.dbToDomain() : List<Movie>{
+fun List<MovieEntity>.movieListFromDBToDomain() : List<Movie>{
     return this.map{
         Movie(
             it.id,
@@ -40,5 +40,11 @@ fun List<MovieRemote>.remoteToDomain() : List<Movie>{
             it.overview
         )
     }
+}
+
+fun MovieEntity.movieDBToDomain() : Movie{
+    return Movie(
+        this.id,this.backGround,this.poster,this.title,this.avg,this.overview
+    )
 }
 
